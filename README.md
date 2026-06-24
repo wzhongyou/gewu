@@ -21,6 +21,18 @@
 
 PDF 翻译和 Firefox 适配放在后续版本。
 
+## 效果预览
+
+以 arXiv 论文阅读为例，格物会在原网页内直接替换正文文本，尽量保留页面原有排版、链接和阅读节奏。
+
+原始英文页面：
+
+![arXiv 原始英文页面](docs/assets/screenshots/arxiv-original.png)
+
+翻译后的页面：
+
+![格物翻译后的 arXiv 页面](docs/assets/screenshots/arxiv-translated.png)
+
 ## 本地开发
 
 安装依赖：
