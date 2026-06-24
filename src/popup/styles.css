@@ -1,0 +1,65 @@
+body {
+  width: 280px;
+  background: #f8fafc;
+}
+
+.popup {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.brand {
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.tagline,
+.status {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #1e293b;
+}
+
+button:hover {
+  background: #f1f5f9;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.primary {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.primary:hover {
+  background: #1d4ed8;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.status {
+  min-height: 18px;
+}
