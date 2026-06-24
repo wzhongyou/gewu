@@ -2,7 +2,7 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  background: #f8fafc;
+  background: linear-gradient(180deg, #fbfcfe 0%, #f6f7f8 100%);
 }
 
 .sidepanel {
@@ -13,25 +13,57 @@ body {
   height: 100vh;
   min-width: 0;
   overflow: hidden;
+  color: #0f1a36;
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
   min-width: 0;
-  padding: 16px;
-  border-bottom: 1px solid #e2e8f0;
-  background: #ffffff;
+  padding: 15px 16px 14px;
+  background: rgb(255 255 255 / 72%);
+  box-shadow:
+    0 1px 0 rgb(15 26 54 / 7%),
+    0 14px 28px rgb(15 26 54 / 4%);
+  backdrop-filter: blur(18px);
+}
+
+.logo-mark {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
 }
 
 h1 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 0;
-  color: #0f172a;
+  color: #0f1a36;
   font-size: 18px;
+  line-height: 1.15;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #17b26a;
+  box-shadow: 0 0 0 4px rgb(23 178 106 / 11%);
+}
+
+.status-dot.working {
+  animation: breathe 1.15s ease-in-out infinite;
+  background: #3d5b8b;
+  box-shadow: 0 0 0 4px rgb(61 91 139 / 11%);
 }
 
 p {
   overflow: hidden;
-  margin: 5px 0 0;
-  color: #64748b;
+  margin: 6px 0 0;
+  color: #667085;
   font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -46,24 +78,46 @@ p {
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  padding: 14px;
+  padding: 16px 14px 18px;
 }
 
-.message,
-.empty {
-  width: 100%;
-  max-width: 100%;
+.message {
+  max-width: 88%;
   min-width: 0;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px 11px;
-  background: #ffffff;
-  color: #1e293b;
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: #172033;
   font-size: 14px;
   line-height: 1.6;
   overflow-wrap: anywhere;
   word-break: break-word;
   white-space: pre-wrap;
+  box-shadow:
+    0 8px 22px rgb(15 26 54 / 5%),
+    inset 0 1px 0 rgb(255 255 255 / 72%);
+}
+
+.empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgb(255 255 255 / 64%);
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.5;
+  box-shadow:
+    0 8px 22px rgb(15 26 54 / 5%),
+    inset 0 1px 0 rgb(255 255 255 / 72%);
+}
+
+.empty svg {
+  flex: 0 0 auto;
+  color: #3d5b8b;
 }
 
 .message *,
@@ -74,25 +128,36 @@ p {
 }
 
 .message.user {
-  border-color: #bfdbfe;
-  background: #eff6ff;
+  justify-self: end;
+  border-bottom-right-radius: 5px;
+  background: #3d5b8b;
+  color: #ffffff;
 }
 
-.empty {
-  color: #64748b;
+.message.assistant {
+  justify-self: start;
+  border-bottom-left-radius: 5px;
+  background: rgb(255 255 255 / 78%);
 }
 
 .composer {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 44px;
-  align-items: end;
-  gap: 8px;
   width: 100%;
   max-width: 100%;
   min-width: 0;
-  padding: 12px;
-  border-top: 1px solid #e2e8f0;
-  background: #ffffff;
+  padding: 10px 12px 8px;
+  background: rgb(255 255 255 / 42%);
+  backdrop-filter: blur(18px);
+}
+
+.composer-box {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(15 26 54 / 9%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 78%);
+  box-shadow:
+    0 12px 32px rgb(15 26 54 / 8%),
+    inset 0 1px 0 rgb(255 255 255 / 76%);
 }
 
 textarea {
@@ -101,24 +166,43 @@ textarea {
   max-width: 100%;
   min-width: 0;
   min-height: 72px;
-  border: 1px solid #cbd5e1;
-  border-radius: 7px;
-  padding: 9px 10px;
-  color: #0f172a;
+  border: 0;
+  outline: 0;
+  padding: 11px 48px 12px 12px;
+  color: #0f1a36;
+  background: transparent;
+  line-height: 1.5;
+}
+
+textarea::placeholder {
+  color: #98a2b3;
 }
 
 button {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
   border: 0;
-  border-radius: 7px;
-  background: #2563eb;
+  border-radius: 10px;
+  background: #3d5b8b;
   color: #ffffff;
   line-height: 1;
+  box-shadow: 0 8px 18px rgb(61 91 139 / 18%);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    opacity 150ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgb(61 91 139 / 20%);
 }
 
 button svg {
@@ -128,13 +212,28 @@ button svg {
 
 button:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.45;
 }
 
 .status {
   min-height: 28px;
-  padding: 6px 12px;
-  color: #64748b;
+  padding: 5px 12px 8px;
+  color: #667085;
   font-size: 12px;
-  background: #ffffff;
+  background: rgb(255 255 255 / 42%);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(0.94);
+    box-shadow: 0 0 0 4px rgb(61 91 139 / 11%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgb(61 91 139 / 7%);
+  }
 }

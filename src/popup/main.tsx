@@ -1,4 +1,4 @@
-import { MessageSquare, Settings, Wand2 } from 'lucide-react'
+import { Languages, MessageSquare, Settings } from 'lucide-react'
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../shared/styles.css'
@@ -40,13 +40,21 @@ function Popup(): JSX.Element {
 
   return (
     <main className="popup">
-      <header>
-        <div className="brand">格物</div>
-        <div className="tagline">双栏翻译与页面问答</div>
+      <header className="popup-header">
+        <div className="brand-row">
+          <img className="logo-mark" src="/icons/icon_48.png" alt="" />
+          <div>
+            <div className="brand-line">
+              <div className="brand">格物</div>
+              <span className={`status-dot ${busy ? 'working' : ''}`} />
+            </div>
+            <div className="tagline">双栏翻译与页面问答</div>
+          </div>
+        </div>
       </header>
 
       <button className="primary" disabled={busy} type="button" onClick={toggleTranslation}>
-        <Wand2 size={17} />
+        <Languages size={18} />
         <span>{busy ? '处理中' : '翻译当前页'}</span>
       </button>
 

@@ -102,8 +102,8 @@ export class PageTranslator {
       :host {
         all: initial;
         position: fixed;
-        left: 16px;
-        bottom: 16px;
+        left: 18px;
+        bottom: 18px;
         z-index: 2147483647;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
@@ -111,33 +111,45 @@ export class PageTranslator {
       .box {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 11px;
         min-height: 40px;
         max-width: min(380px, calc(100vw - 32px));
-        border: 1px solid #bfdbfe;
-        border-radius: 8px;
-        padding: 8px 10px;
-        background: #eff6ff;
-        box-shadow: 0 10px 28px rgb(15 23 42 / 16%);
-        color: #1e3a8a;
+        border: 1px solid rgb(15 26 54 / 10%);
+        border-radius: 999px;
+        padding: 8px 8px 8px 13px;
+        background: rgb(255 255 255 / 82%);
+        box-shadow:
+          0 16px 38px rgb(15 26 54 / 14%),
+          inset 0 1px 0 rgb(255 255 255 / 78%);
+        color: #0f1a36;
         font-size: 13px;
         line-height: 1.4;
+        backdrop-filter: blur(18px);
         transition: opacity 160ms ease, transform 160ms ease;
+      }
+
+      .box::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #3d5b8b;
+        box-shadow: 0 0 0 5px rgb(61 91 139 / 10%);
+        content: '';
       }
 
       button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 72px;
-        height: 26px;
-        border: 1px solid #93c5fd;
-        border-radius: 6px;
-        background: #ffffff;
-        color: #1e40af;
+        min-width: 68px;
+        height: 28px;
+        border: 1px solid rgb(61 91 139 / 18%);
+        border-radius: 999px;
+        background: rgb(61 91 139 / 8%);
+        color: #3d5b8b;
         cursor: pointer;
         font: inherit;
-        padding: 0 8px;
+        padding: 0 10px;
         white-space: nowrap;
       }
     `
@@ -146,13 +158,13 @@ export class PageTranslator {
     pageStyle.id = 'gewu-page-translator-style'
     pageStyle.textContent = `
       [${BLOCK_STATE_ATTR}="queued"] {
-        box-shadow: inset 3px 0 0 #bfdbfe;
-        background-image: linear-gradient(90deg, rgb(219 234 254 / 30%), transparent 52%);
+        box-shadow: inset 2px 0 0 rgb(61 91 139 / 26%);
+        background-image: linear-gradient(90deg, rgb(61 91 139 / 6%), transparent 52%);
       }
 
       [${BLOCK_STATE_ATTR}="translating"] {
-        box-shadow: inset 3px 0 0 #3b82f6;
-        background-image: linear-gradient(90deg, rgb(147 197 253 / 35%), transparent 58%);
+        box-shadow: inset 2px 0 0 #3d5b8b;
+        background-image: linear-gradient(90deg, rgb(89 159 171 / 8%), transparent 58%);
       }
     `
 

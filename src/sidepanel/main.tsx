@@ -1,4 +1,4 @@
-import { Send } from 'lucide-react'
+import { Send, Sparkles } from 'lucide-react'
 import { FormEvent, KeyboardEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { getPageContext, savePageContext } from '../shared/storage'
@@ -189,15 +189,22 @@ function SidePanel(): JSX.Element {
   return (
     <main className="sidepanel">
       <header className="header">
+        <img className="logo-mark" src="/icons/icon_48.png" alt="" />
         <div>
-          <h1>格物问答</h1>
+          <h1>
+            格物问答
+            <span className={`status-dot ${busy ? 'working' : ''}`} />
+          </h1>
           <p>{context?.title ?? '暂无页面上下文'}</p>
         </div>
       </header>
 
       <section className="messages">
         {messages.length === 0 ? (
-          <div className="empty">围绕当前页面提问。</div>
+          <div className="empty">
+            <Sparkles size={18} />
+            <span>围绕当前页面提问。</span>
+          </div>
         ) : (
           messages.map((message, index) => (
             <article className={`message ${message.role}`} key={`${message.role}-${index}`}>
@@ -208,16 +215,18 @@ function SidePanel(): JSX.Element {
       </section>
 
       <form className="composer" onSubmit={submit}>
-        <textarea
-          value={draft}
-          placeholder="输入问题"
-          rows={3}
-          onChange={(event) => setDraft(event.target.value)}
-          onKeyDown={handleComposerKeyDown}
-        />
-        <button disabled={busy || !draft.trim()} type="submit" title="发送">
-          <Send size={18} />
-        </button>
+        <div className="composer-box">
+          <textarea
+            value={draft}
+            placeholder="输入问题"
+            rows={3}
+            onChange={(event) => setDraft(event.target.value)}
+            onKeyDown={handleComposerKeyDown}
+          />
+          <button disabled={busy || !draft.trim()} type="submit" title="发送">
+            <Send size={17} />
+          </button>
+        </div>
       </form>
 
       <div className="status">{status}</div>

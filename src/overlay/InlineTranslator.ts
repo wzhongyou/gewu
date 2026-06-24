@@ -70,6 +70,11 @@ export class InlineTranslator {
     const title = document.createElement('div')
     title.className = 'title'
 
+    const mark = document.createElement('img')
+    mark.className = 'logo-mark'
+    mark.alt = ''
+    mark.src = chrome.runtime.getURL('icons/icon_48.png')
+
     const name = document.createElement('div')
     name.className = 'name'
     name.textContent = '格物翻译'
@@ -77,7 +82,7 @@ export class InlineTranslator {
     this.status.className = 'status'
     this.status.textContent = '准备翻译'
 
-    title.append(name, this.status)
+    title.append(mark, name, this.status)
 
     const close = document.createElement('button')
     close.className = 'button'
