@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
+    "pack:chrome": "node scripts/package-chrome.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --max-warnings=0"
   },
