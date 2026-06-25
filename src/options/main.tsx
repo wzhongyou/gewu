@@ -43,7 +43,7 @@ function Options(): JSX.Element {
         return {
           ...current,
           provider,
-          baseUrl: 'https://api.anthropic.com',
+          baseUrl: current.provider === provider ? current.baseUrl : 'https://api.anthropic.com',
           model: current.provider === provider ? current.model : 'claude-3-5-sonnet-latest'
         }
       }
@@ -52,7 +52,7 @@ function Options(): JSX.Element {
         ...current,
         provider,
         baseUrl: current.provider === provider ? current.baseUrl : 'https://api.deepseek.com',
-        model: current.provider === provider ? current.model : 'deepseek-chat'
+        model: current.provider === provider ? current.model : 'deepseek-v4-flash'
       }
     })
   }
@@ -61,7 +61,7 @@ function Options(): JSX.Element {
     <main className="options">
       <header className="page-header">
         <h1>格物设置</h1>
-        <p>配置你的模型服务商。页面内容会由浏览器直接发送给该服务商。</p>
+        <p>配置你的模型服务商。页面内容会由浏览器直接发送给该服务商。API Key 加密存储。</p>
       </header>
 
       <form className="form" onSubmit={submit}>

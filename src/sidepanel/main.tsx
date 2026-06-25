@@ -51,7 +51,14 @@ function SidePanel(): JSX.Element {
     setStatus('读取当前页面正文...')
 
     try {
-      const value = await refreshContext()
+      // Retry up to 5 times (PDF reader may still be loading)
+      let value: PageContext | null = null
+      for (let i = 0; i < 5; i++) {
+        value = await refreshContext()
+        if (value) break
+        if (i < 4) await new Promise((r) => setTimeout(r, 800))
+      }
+
       activeUrlRef.current = value?.url ?? null
       setContext(value)
       setStatus(value ? '可以提问' : '未能读取当前页面正文')

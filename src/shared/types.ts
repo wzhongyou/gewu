@@ -1,4 +1,4 @@
-export type Provider = 'openai-compatible' | 'anthropic'
+export type Provider = 'openai-compatible' | 'anthropic' | 'ollama'
 
 export type TargetLang = 'zh-CN'
 
@@ -28,6 +28,7 @@ export type TranslateRequest = {
   requestId: string
   paragraphs: PageParagraph[]
   targetLang: TargetLang
+  url?: string
 }
 
 export type TranslateBatchRequest = {
@@ -36,6 +37,7 @@ export type TranslateBatchRequest = {
   batchId?: string
   paragraphs: PageParagraph[]
   targetLang: TargetLang
+  url?: string
 }
 
 export type TranslateControlRequest = {
@@ -70,8 +72,10 @@ export type TranslationEvent =
 export type RuntimeCommand =
   | { type: 'toggle-translation' }
   | { type: 'toggle-overlay-translation' }
+  | { type: 'open-reader' }
   | { type: 'open-options' }
   | { type: 'capture-page-context' }
+  | { type: 'check-is-pdf'; url: string }
 
 export type RuntimeResponse<T = unknown> = {
   ok: boolean

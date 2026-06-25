@@ -1,6 +1,7 @@
 import { InlineTranslator } from '../overlay/InlineTranslator'
 import { PageTranslator } from '../pageTranslator/PageTranslator'
 import { extractPageContext, markPageParagraphs } from '../shared/readability'
+import { savePageContext } from '../shared/storage'
 import type { RuntimeCommand, RuntimeResponse } from '../shared/types'
 
 let activeTranslator: InlineTranslator | null = null
@@ -41,6 +42,19 @@ function bindRuntimeMessages(): void {
       return true
     }
 
+    if (message.type === 'open-reader') {
+      openReader()
+        .then(() => sendResponse({ ok: true } satisfies RuntimeResponse))
+        .catch((error) => {
+          sendResponse({
+            ok: false,
+            error: error instanceof Error ? error.message : String(error)
+          } satisfies RuntimeResponse)
+        })
+
+      return true
+    }
+
     if (message.type !== 'toggle-translation') return false
 
     toggleTranslation()
@@ -58,6 +72,16 @@ function bindRuntimeMessages(): void {
 
 async function capturePageContext() {
   return extractPageContext()
+}
+
+async function openReader(): Promise<void> {
+  const context = await capturePageContext()
+  if (context.paragraphs.length === 0) {
+    throw new Error('没有提取到可阅读的正文')
+  }
+  await savePageContext(context)
+  const readerUrl = chrome.runtime.getURL('src/reader/index.html')
+  window.open(readerUrl, '_blank')
 }
 
 async function toggleTranslation(): Promise<void> {

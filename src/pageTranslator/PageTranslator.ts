@@ -315,7 +315,8 @@ export class PageTranslator {
             text: entry.original
           })
         ),
-        targetLang: 'zh-CN'
+        targetLang: 'zh-CN',
+        url: location.href
       })
       if (!posted) {
         for (const entry of batch) {

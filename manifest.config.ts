@@ -4,7 +4,7 @@ const manifest: ManifestV3Export = {
   manifest_version: 3,
   name: '格物 Gewu',
   description: '外文网页双栏翻译 + 页面问答阅读助手',
-  version: '0.1.0',
+  version: '0.2.0',
   action: {
     default_title: '格物',
     default_popup: 'src/popup/index.html'
@@ -26,6 +26,12 @@ const manifest: ManifestV3Export = {
   ],
   permissions: ['activeTab', 'scripting', 'storage', 'sidePanel', 'tabs'],
   host_permissions: ['http://*/*', 'https://*/*'],
+  web_accessible_resources: [
+    {
+      matches: ['http://*/*', 'https://*/*'],
+      resources: ['src/reader/index.html', 'src/pdf/index.html']
+    }
+  ],
   icons: {
     16: 'icons/icon_16.png',
     32: 'icons/icon_32.png',

@@ -7,6 +7,12 @@ export default defineConfig({
   plugins: [react(), crx({ manifest })],
   build: {
     outDir: 'dist',
-    emptyOutDir: true
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        reader: 'src/reader/index.html',
+        pdf: 'src/pdf/index.html'
+      }
+    }
   }
 })

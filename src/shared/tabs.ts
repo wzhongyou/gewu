@@ -34,3 +34,17 @@ function isMissingReceiverError(error: unknown): boolean {
   const message = error instanceof Error ? error.message : String(error)
   return message.includes('Receiving end does not exist')
 }
+
+export async function checkActiveTabIsPdf(): Promise<boolean> {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  if (!tab.url) return false
+  try {
+    const response = (await chrome.runtime.sendMessage({
+      type: 'check-is-pdf',
+      url: tab.url
+    })) as { ok: boolean; data?: { isPdf: boolean } }
+    return response?.data?.isPdf === true
+  } catch {
+    return false
+  }
+}

@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import '../shared/styles.css'
 import './styles.css'
 import type { RuntimeResponse } from '../shared/types'
-import { sendMessageToActiveTab } from '../shared/tabs'
+import { checkActiveTabIsPdf, sendMessageToActiveTab } from '../shared/tabs'
 
 function Popup(): JSX.Element {
   const [status, setStatus] = useState('准备就绪')
@@ -14,6 +14,17 @@ function Popup(): JSX.Element {
     setBusy(true)
     setStatus('正在处理当前页...')
     try {
+      const isPdf = await checkActiveTabIsPdf()
+      if (isPdf) {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+        await chrome.tabs.update(tab.id!, {
+          url: chrome.runtime.getURL(`src/pdf/index.html?url=${encodeURIComponent(tab.url!)}`)
+        })
+        await openSidePanel()
+        setStatus('已打开 PDF 阅读器，并开启问答')
+        return
+      }
+
       const response = await sendMessageToActiveTab<RuntimeResponse>({
         type: 'toggle-translation'
       })

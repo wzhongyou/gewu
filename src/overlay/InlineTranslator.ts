@@ -136,7 +136,8 @@ export class InlineTranslator {
       type: 'translate',
       requestId: this.requestId,
       paragraphs: this.paragraphs,
-      targetLang: 'zh-CN'
+      targetLang: 'zh-CN',
+      url: location.href
     })
   }
 
