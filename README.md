@@ -6,6 +6,8 @@
 
 格物不提供自建后端：页面内容由浏览器直接发送到用户配置的模型服务商。
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-安装-blue)](https://chromewebstore.google.com/detail/%E6%A0%BC%E7%89%A9-gewu/lplighcbggdhjkanaminfccamoheeade?hl=zh-CN)
+
 ## 当前状态
 
 v0.2.0，支持 Chrome / Edge MV3：
@@ -50,7 +52,11 @@ npm run typecheck # 类型检查
 npm run lint      # 代码规范
 ```
 
-## 在 Chrome 中加载
+## 安装
+
+**[Chrome 应用商店](https://chromewebstore.google.com/detail/%E6%A0%BC%E7%89%A9-gewu/lplighcbggdhjkanaminfccamoheeade?hl=zh-CN)** 一键安装。
+
+## 本地开发加载
 
 1. `npm run build`
 2. 打开 `chrome://extensions/`，开启开发者模式
