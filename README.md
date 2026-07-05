@@ -15,7 +15,7 @@ v0.2.0，支持 Chrome / Edge MV3：
 - **沉浸阅读模式**：提取页面正文，在新标签页双栏对照阅读。
 - **AI 对话**：Side Panel 基于当前页面内容持续问答。
 - **译文缓存**：IndexedDB 自动缓存，相同页面二次打开秒出译文。
-- **加密存储**：API Key 自动加密后落盘，不清文存储。
+- **加密存储**：API Key 自动加密后落盘，不存储明文。
 - 支持 **DeepSeek / OpenAI 兼容 / Anthropic Claude**，用户自备 API Key。
 
 ## 效果预览
