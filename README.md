@@ -12,6 +12,9 @@
 
 v0.2.0，支持 Chrome / Edge MV3：
 
+[Chrome 商店安装](https://chromewebstore.google.com/detail/%E6%A0%BC%E7%89%A9-gewu/lplighcbggdhjkanaminfccamoheeade?hl=zh-CN)
+
+
 - **网页原地翻译**：当前页文本直接替换为中文，保留链接和页面结构。
 - **PDF 阅读器**：自动检测 PDF URL，打开内置阅读器，PDF 页面对照译文，滚动懒翻译。
 - **沉浸阅读模式**：提取页面正文，在新标签页双栏对照阅读。
